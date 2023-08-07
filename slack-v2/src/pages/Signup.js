@@ -1,5 +1,6 @@
 import React , { useState } from 'react'
 import useSignup from '../customHooks/useSignup';
+import { useLogout } from '../customHooks/useLogout';
 
 function Signup() {
 
@@ -8,6 +9,7 @@ function Signup() {
    const [displayName, setDisplayName] = useState('');
    const [photo, setphoto] = useState(null);
    const { isLoading , error , signup } = useSignup();
+   const { logout } = useLogout();
 
    function handleSubmit(e) {
       e.preventDefault();
@@ -29,6 +31,8 @@ function Signup() {
          { !isLoading && <button>Signup</button> }
          { error && <div>{error}</div> }
       </form>
+
+      <button onClick={logout}>Logout</button>
    </>
   )
 }
