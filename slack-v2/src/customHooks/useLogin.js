@@ -1,31 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { projectAuth } from '../firebase/config'
 import { useAuthContext } from './useAuthContext';
 
-export default function useSignup() {
+export const useLogin = () => {
    const [abort, setAbort] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState(null);
    const { dispatch } = useAuthContext();
 
-   const signup = async (email,password,displayName) => {
+   const login = async (email, password) => {
       setError(null);
       setIsLoading(true);
+      
       try {
-         const response = await projectAuth.createUserWithEmailAndPassword(email,password);
-         if (!response) {
-            throw new Error("Could not sign up please try again!")
-         }
+         const response = await projectAuth.signInWithEmailAndPassword(email, password);
+         dispatch({ type: "LOGIN", payload: response.user });
 
-         dispatch({ type:'LOGIN', payload: response.user });
-
-         await response.user.updateProfile({ displayName });
-         if (!abort) {  
+         if (!abort) {
             setError(null);
             setIsLoading(false);
          }
       } catch (err) {
-         if (!abort) {  
+         if (!abort) {
             console.log(err.message);
             setError(err.message);
             setIsLoading(false);
@@ -35,7 +31,7 @@ export default function useSignup() {
 
    useEffect(() => {
       return () => setAbort(true);
-    }, [])
+   }, [])
 
-  return { isLoading , error , signup }
+   return { login, isLoading, error }
 }
