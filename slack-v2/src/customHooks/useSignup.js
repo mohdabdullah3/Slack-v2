@@ -1,41 +1,34 @@
-import { useState,useEffect } from 'react';
-import { projectAuth } from '../firebase/config'
+import { useState, useEffect } from 'react';
+import { projectAuth, projectStorage } from '../firebase/config'
 import { useAuthContext } from './useAuthContext';
 
 export default function useSignup() {
-   const [abort, setAbort] = useState(false);
    const [isLoading, setIsLoading] = useState(false);
    const [error, setError] = useState(null);
    const { dispatch } = useAuthContext();
 
-   const signup = async (email,password,displayName) => {
+   const signup = async (email, password, displayName, profilePhoto) => {
       setError(null);
       setIsLoading(true);
       try {
-         const response = await projectAuth.createUserWithEmailAndPassword(email,password);
+         const response = await projectAuth.createUserWithEmailAndPassword(email, password);
          if (!response) {
             throw new Error("Could not sign up please try again!")
          }
+         const uploadPath = `Profile-Photos/${response.user.uid}/${profilePhoto.name}`;
+         const image = await projectStorage.ref(uploadPath).put(profilePhoto);
+         const imageURL = image.ref.getDownloadURL();
 
-         dispatch({ type:'LOGIN', payload: response.user });
+         await response.user.updateProfile({ displayName, photoURL: imageURL });
+         dispatch({ type: 'LOGIN', payload: response.user });
 
-         await response.user.updateProfile({ displayName });
-         if (!abort) {  
-            setError(null);
-            setIsLoading(false);
-         }
+         setError(null);
+         setIsLoading(false);
       } catch (err) {
-         if (!abort) {  
-            console.log(err.message);
-            setError(err.message);
-            setIsLoading(false);
-         }
+         setError(err.message);
+         setIsLoading(false);
       }
    }
 
-   useEffect(() => {
-      return () => setAbort(true);
-    }, [])
-
-  return { isLoading , error , signup }
+   return { isLoading, error, signup }
 }

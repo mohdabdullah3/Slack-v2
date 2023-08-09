@@ -35,11 +35,12 @@ textarea {
 
 .error {
   color: red;
-  background: pink;
+  background: rgb(255, 211, 218);
   border: 1px solid red;
   border-radius: 4px;
-  margin: 10px 0;
   padding: 8px;
+  font-size: 12px;
+  line-height: 10px !important;
 }
 
 ::-webkit-scrollbar {

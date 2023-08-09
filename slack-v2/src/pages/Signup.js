@@ -2,34 +2,63 @@ import React , { useState } from 'react'
 import useSignup from '../customHooks/useSignup';
 import './Login.css';
 import logo from '../assets/logo.png'
+import { Link } from 'react-router-dom';
 
 function Signup() {
 
    const [email, setEmail] = useState('');
    const [password, setpPassword] = useState('');
    const [displayName, setDisplayName] = useState('');
-   const [photo, setphoto] = useState(null);
+   const [profilePhoto, setProfilePhoto] = useState(null);
+   const [fileError, setfileError] = useState('');
    const { isLoading , error , signup } = useSignup();
 
    function handleSubmit(e) {
       e.preventDefault();
-      signup(email , password , displayName)
+      signup(email , password , displayName, profilePhoto);
    }
 
    function handlePhoto(e) {
-      setphoto(e.target.files[0]);
+      setProfilePhoto(null);
+      setfileError(null);
+
+      let fileReceived = e.target.files[0];
+
+      if (!fileReceived) {
+         setfileError('Please select an Image');
+         return;
+      }
+      if (!fileReceived.type.includes('image')) {
+         setfileError('Select only the Image');
+         return;
+      }
+      if (fileReceived.size > 102500) {
+         setfileError('Image size should be less than 100kb');
+         return;
+      }
+
+      setfileError(null);
+      setProfilePhoto(fileReceived);
    }
 
   return (
    <>
       <form className='form' onSubmit={handleSubmit}>
+         
          <img className='logo' src={logo} alt="logo" />
          <h3>Sign up</h3>
+
          <input type="text" required onChange={e => setDisplayName(e.target.value)} value={displayName} placeholder='Enter full name' />
          <input type="email" required onChange={e => setEmail(e.target.value)} value={email} placeholder='Enter email' />
          <input type="password" required onChange={e => setpPassword(e.target.value)} value={password} placeholder='Enter password' />
-         <button className='btn'>Sign up</button>
-         <span className='register'>Already logged In? <a href="">Go to login page</a></span>
+         <input type="file" required onChange={handlePhoto} />
+         {fileError && <div className="error">{fileError}</div> }
+
+         { !isLoading && <button className='btn'>Sign up</button>}
+         { isLoading && <button className='btn' disabled>Loading</button>}
+         {error && <div className="error">{error}</div> }
+
+         <span className='register'>Already logged In? <Link to="/login">Go to login page</Link></span>
       </form>
 
    </>
