@@ -1,0 +1,25 @@
+.navbar{
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   justify-content: space-between;
+   margin: 1% 2%;
+}
+
+.navbar img{
+   width: 120px;
+}
+
+.navbar .btn{
+   width: 80px;
+   border: none;
+   background: rgb(255, 52, 52);
+   padding: 8px;
+   border-radius: 5px;
+   color: whitesmoke;
+   cursor: pointer;
+}
+.navbar .btn:hover{
+   background: rgb(192, 36, 36);
+   transition: 1s;
+}

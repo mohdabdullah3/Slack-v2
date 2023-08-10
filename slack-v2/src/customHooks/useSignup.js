@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { projectAuth, projectStorage } from '../firebase/config'
 import { useAuthContext } from './useAuthContext';
 
@@ -17,7 +17,7 @@ export default function useSignup() {
          }
          const uploadPath = `Profile-Photos/${response.user.uid}/${profilePhoto.name}`;
          const image = await projectStorage.ref(uploadPath).put(profilePhoto);
-         const imageURL = image.ref.getDownloadURL();
+         const imageURL = await image.ref.getDownloadURL();
 
          await response.user.updateProfile({ displayName, photoURL: imageURL });
          dispatch({ type: 'LOGIN', payload: response.user });
