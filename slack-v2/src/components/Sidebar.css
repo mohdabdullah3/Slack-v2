@@ -1,7 +1,53 @@
 .sidebar{
-   background: rgb(97, 97, 255);
+   background: rgb(46, 46, 182);
    color: white;
    height: 100vh;
-   width: 250px;
-   box-sizing: border-box;
+   width: 18%;
+   position: fixed;
+}
+
+.sidebar .user{
+   text-align: center;
+   letter-spacing: 1px;
+   padding: 10%;
+   border-bottom: 1px solid rgba(255, 255, 255, 0.212);
+}
+
+.sidebar .user .avatar{
+   margin: auto;
+   width: 60px;
+}
+
+.sidebar .user .avatar img{
+   border-radius: 50%;
+   object-fit:cover;
+   width: 100%;
+}
+
+.sidebar .sideMenu{
+   margin-top: 30px;
+}
+
+.sidebar .sideMenu li a{
+   margin-bottom: 5px;
+   margin-left: 10%;
+   padding: 8px 15px 8px;
+   line-break: auto;
+   cursor: pointer;
+   display: flex;
+   color: #f4f4f4;
+   align-items: center;
+}
+.sidebar .sideMenu li a.active{
+   border-radius: 40px 0px 0px 40px !important;
+   background: #f4f4f4 !important;
+   color: rgb(46, 46, 182) !important;
+   
+}
+.sideMenu li a:hover{
+   text-decoration: none !important;
+}
+.sidebar .sideMenu li p{
+   margin-left: 8px;
+   font-size: 0.9rem;
 }

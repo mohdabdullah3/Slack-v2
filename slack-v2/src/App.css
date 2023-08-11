@@ -1,0 +1,11 @@
+.main{
+   overflow-x: hidden;
+   display: flex;
+}
+.main_body{
+   margin-left: 18%;
+   /* border: 1px solid black; */
+   flex-grow: 1;
+}
+.main_body .content{
+}

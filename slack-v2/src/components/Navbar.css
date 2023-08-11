@@ -3,7 +3,8 @@
    flex-direction: row;
    align-items: center;
    justify-content: space-between;
-   margin: 1% 2%;
+   margin: 2% 4%;
+   /* border: 1px solid black; */
 }
 
 .navbar img{
