@@ -6,26 +6,15 @@
    position: fixed;
 }
 
+.sidebar .sideMenu{
+   margin-top: 30px;
+}
+
 .sidebar .user{
    text-align: center;
    letter-spacing: 1px;
    padding: 10%;
    border-bottom: 1px solid rgba(255, 255, 255, 0.212);
-}
-
-.sidebar .user .avatar{
-   margin: auto;
-   width: 60px;
-}
-
-.sidebar .user .avatar img{
-   border-radius: 50%;
-   object-fit:cover;
-   width: 100%;
-}
-
-.sidebar .sideMenu{
-   margin-top: 30px;
 }
 
 .sidebar .sideMenu li a{

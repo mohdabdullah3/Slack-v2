@@ -1,18 +1,18 @@
 import React from 'react'
 import './Sidebar.css'
-import photo from '../assets/abdullah.JPG'
 import { Icon } from '@iconify/react';
 import { NavLink } from 'react-router-dom';
+import Avatar from './Avatar';
+import { useAuthContext } from '../customHooks/useAuthContext';
 
 function Sidebar() {
-  return (
+  const { user } = useAuthContext();
+   return (
     <>
       <div className="sidebar">
         <div className="user">
-          <div className="avatar">
-            <img src={photo} alt="" />
-          </div>
-          <h4>Muhammad Abdullah</h4>
+          <Avatar photo={user.photoURL} />
+          <h4>{user.displayName}</h4>
         </div>
         <div className="sideMenu">
           <ul>

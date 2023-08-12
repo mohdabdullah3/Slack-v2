@@ -22,7 +22,7 @@ function Login() {
          <h3>Log In</h3>
 
          <input type="email" required onChange={e => setEmail(e.target.value)} value={email} placeholder='Enter Email' />
-         <input type="password" required onChange={e => setPassword(e.target.value)} value={password} placeholder='Enter Password' />
+         <input type="password" required onChange={e => setPassword(e.target.value)} value={password} placeholder='Enter Password' autocomplete="current-password" />
          
          { !isLoading && <button className='btn'>Login</button>}
          { isLoading && <button className='btn' disabled>Loading</button>}
