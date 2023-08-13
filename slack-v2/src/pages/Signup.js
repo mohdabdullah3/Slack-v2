@@ -50,7 +50,7 @@ function Signup() {
 
          <input type="text" required onChange={e => setDisplayName(e.target.value)} value={displayName} placeholder='Enter full name' />
          <input type="email" required onChange={e => setEmail(e.target.value)} value={email} placeholder='Enter email' />
-         <input type="password" required onChange={e => setpPassword(e.target.value)} value={password} placeholder='Enter password' autocomplete="current-password" />
+         <input type="password" required onChange={e => setpPassword(e.target.value)} value={password} placeholder='Enter password' autoComplete="current-password" />
          <input type="file" required onChange={handlePhoto} />
          {fileError && <div className="error">{fileError}</div> }
 

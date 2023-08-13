@@ -5,3 +5,40 @@
    min-width: 200px;
    text-align: center;
 }
+.rightbar h4{
+   border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+   padding-block: 5%;
+   color: rgba(0, 0, 0, 0.637);
+}
+.rightbar .userStatus{
+   display: flex;
+   flex-direction: row-reverse;
+   align-items: center;
+   padding: 5px;
+   border-bottom: 1px solid rgba(128, 128, 128, 0.205);
+}
+.rightbar .userStatus span{
+   font-size: 0.7rem;
+   width: 75%;
+   font-weight: 400;
+   white-space:nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+}
+.rightbar .userStatus .avatar{
+   width: 20%;
+   width: 40px;
+   height: 40px;
+}
+.userStatus .onlineSymbol{
+   width: 10px;
+   height: 10px;
+   background: rgb(30, 187, 30);
+   border-radius: 50%;
+}
+.userStatus .offlineSymbol{
+   width: 10px;
+   height: 10px;
+   background: rgb(199, 199, 199);
+   border-radius: 50%;
+}
