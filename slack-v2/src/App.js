@@ -7,6 +7,8 @@ import Projects from "./pages/projects/Projects"
 import NewProject from "./pages/newProject/NewProject"
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Project from './pages/Project/Project'
+
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
@@ -22,6 +24,7 @@ function App() {
                 { user && <Navbar /> }
                 <Routes>
                   <Route path='/' element={user ? <Projects /> : <Navigate to="/login" />} />
+                  <Route path='/projects/:id' element={user ? <Project /> : <Navigate to="/login" />} />
                   <Route path='/new-project' element={user ? <NewProject /> : <Navigate to="/login" />} />
                   <Route path='/login' element={!user ? <Login /> : <Navigate to="/" />} />
                   <Route path='/signup' element={!user ? <Signup /> : <Navigate to="/" />} />

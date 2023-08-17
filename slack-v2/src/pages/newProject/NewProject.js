@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import Select from 'react-select'
+import { useAuthContext } from '../../customHooks/useAuthContext'
 import { useGetData } from '../../customHooks/useGetData'
+import React, { useEffect, useState } from 'react'
+import { timeStamp } from '../../firebase/config'
+import Select from 'react-select'
 import './NewProject.css'
+import { useFirestore } from '../../customHooks/useFirestore'
+import { useNavigate } from 'react-router-dom'
 
 const categories = [
   {value:'requirement gathering' , label:'Requirement Gathering'},
@@ -13,10 +17,12 @@ const categories = [
 ]
 
 function NewProject() {
-
+  const navigate = useNavigate()
   const { documents } = useGetData('users');
   const [users, setUsers] = useState([]);
-  
+  const { user } = useAuthContext();
+  const { addDocument, response } = useFirestore('projects')
+
   const [name, setName] = useState('');
   const [details, setDetails] = useState('');
   const [dueDate, setDueDate] = useState('');
@@ -34,8 +40,7 @@ function NewProject() {
     }
   }, [documents])
   
-
-  function handleSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors(null);
     if (!category) {
@@ -46,7 +51,35 @@ function NewProject() {
       setErrors("Please select atleast one user")
       return
     }
-    console.log(name,details,dueDate,category.value, assignedUsers);
+
+    const createdBy = {
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      id: user.uid
+    }
+
+    const assignedUsersList = assignedUsers.map(user => {
+      return {
+        displayName: user.value.displayName,
+        photoURL: user.value.photoURL,
+        id: user.value.id
+      }
+    })
+
+    const project = {
+      name,
+      details,
+      category: category.value,
+      dueDate: timeStamp.fromDate(new Date(dueDate)),
+      comments: [],
+      createdBy,
+      assignedUsersList
+    }
+
+    await addDocument(project);
+    if (!response.error) {
+      navigate('/')
+    }
   }
 
   return (
