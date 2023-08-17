@@ -1,0 +1,52 @@
+.create{
+   /* border: 1px solid rgb(209, 17, 17); */
+   max-width: 500px;
+   display: flex;
+   flex-direction: column;
+   border-radius: 12px;
+}
+form{
+   display: flex;
+   flex-direction: column;
+   margin-top: 3%;
+}
+
+label{
+   font-size: 13px;
+   margin-bottom: 10px;
+}
+label span{
+   display: block;
+   margin-bottom: 5px;
+}
+textarea{
+   min-height: 160px;
+   resize: none;
+}
+input,textarea{
+   border: 0;
+   border-radius: 5px;
+   padding: 12px;
+   width: 95%;
+}
+input:focus , textarea:focus{
+   outline: none;
+}
+.css-13cymwt-control{
+   border-style: none !important;
+}
+
+.btn{
+   width: 30%;
+   border: none;
+   background: rgb(255, 91, 247);
+   padding: 8px;
+   border-radius: 5px;
+   color: white;
+   margin-block: 10px;
+   cursor: pointer;
+}
+.btn:hover{
+   background: rgb(255, 52, 245);
+   transition: 1s;
+}
