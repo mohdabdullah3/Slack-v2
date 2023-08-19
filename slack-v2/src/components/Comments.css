@@ -1,0 +1,34 @@
+.comments label{
+   margin: 0;
+}
+.comments textarea{
+   min-height: 100px;
+}
+.comments .btn{
+   width: 140px;
+}
+.comments li{
+   background: white;
+   margin-top: 15px;
+   border-radius: 5px;
+   padding: 15px;
+   
+}
+.comments .commentWriter{
+   display: flex;
+   align-items: center;
+   font-weight: 600;
+}
+.comments .commentWriter .avatar{
+   width: 30px;
+   height: 30px;
+   margin-right: 10px;
+}
+.comments .commentDate{
+   font-size: 0.9rem;
+   margin: 4px 0 10px;
+   color: grey;
+}
+.comments .commentContent{
+   font-size: 0.9rem;
+}
