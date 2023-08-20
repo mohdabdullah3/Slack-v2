@@ -1,0 +1,6 @@
+.projectsFilter{
+   margin-block: 2% 3%;
+}
+.projectsFilter button.active{
+   background-color: aqua;
+}
