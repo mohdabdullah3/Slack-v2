@@ -1,6 +1,20 @@
 .projectsFilter{
    margin-block: 2% 3%;
 }
+.projectsFilter button{
+   border: 1px solid rgba(128, 128, 128, 0.185);
+   border-radius: 3px;
+   padding: 7px 15px;
+   margin-right: 5px;
+   cursor: pointer;
+   transition: 0.3s;
+   margin-bottom: 5px;
+}
 .projectsFilter button.active{
-   background-color: aqua;
+   background-color: rgb(94, 94, 250);
+   color: white;
+}
+.dashboard .loader{
+   text-align: center;
+   margin-top: 10%;
 }

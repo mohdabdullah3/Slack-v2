@@ -4,6 +4,8 @@ import { projectFirestore } from "../firebase/config"
 export const useGetData = (collection, _query, _orderBy) => {
   const [documents, setDocuments] = useState(null)
   const [error, setError] = useState(null)
+  const [isLoading, setIsLoading] = useState(false);
+
 
   // if we don't use a ref --> infinite loop in useEffect
   // _query is an array and is "different" on every function call
@@ -11,6 +13,7 @@ export const useGetData = (collection, _query, _orderBy) => {
   const orderBy = useRef(_orderBy).current
 
   useEffect(() => {
+    setIsLoading(true);
     let ref = projectFirestore.collection(collection)
 
     if (query) {
@@ -27,10 +30,12 @@ export const useGetData = (collection, _query, _orderBy) => {
       });
       
       // update state
+      setIsLoading(false);
       setDocuments(results)
       setError(null)
     }, error => {
       console.log(error)
+      setIsLoading(false);
       setError('could not fetch the data')
     })
 
@@ -39,5 +44,5 @@ export const useGetData = (collection, _query, _orderBy) => {
 
   }, [collection, query, orderBy])
 
-  return { documents, error }
+  return { documents, isLoading, error }
 }

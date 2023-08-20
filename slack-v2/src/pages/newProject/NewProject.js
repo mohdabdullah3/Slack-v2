@@ -125,7 +125,8 @@ function NewProject() {
             isMulti />
           </label>
 
-          <button className='btn'>Add Project</button>
+          {response.isPending && <button className='btn'>Loading</button>}
+          {!response.isPending && <button className='btn'>Add Project</button>}
           {errors && <div className="error">{errors}</div> }
         </form>
 

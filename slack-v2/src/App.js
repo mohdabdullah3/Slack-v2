@@ -18,9 +18,9 @@ function App() {
       {
         authIsReady && (
           <BrowserRouter>
-            <div className="main">
+            <div className={user ? "main" : ""}>
               { user && <Sidebar /> }
-              <div className="main_body">
+              <div className={user ? "main_body" : ""}>
                 { user && <Navbar /> }
                 <Routes>
                   <Route path='/' element={user ? <Projects /> : <Navigate to="/login" />} />

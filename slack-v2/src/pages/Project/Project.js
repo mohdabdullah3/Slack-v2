@@ -8,6 +8,7 @@ import { Comments } from '../../components/Comments';
 import { useFirestore } from '../../customHooks/useFirestore';
 import { useAuthContext } from '../../customHooks/useAuthContext';
 import { useNavigate } from 'react-router-dom';
+import SyncLoader from "react-spinners/SyncLoader";
 
 export default function Project() {
   const { deleteDocument } = useFirestore('projects')
@@ -21,12 +22,19 @@ export default function Project() {
     deleteDocument(document.id)
     navigate('/')
   }
-  
+
   if (error) {
     return <div className="error">{error}</div>
   }
   if (!document) {
-    return <div className="loading">Loading....</div>
+    return <div className="loading">
+      <SyncLoader
+        className='loader'
+        color='rgb(94, 94, 250)'
+        loading={true}
+        size={10}
+      />
+    </div>
   }
 
   return (
