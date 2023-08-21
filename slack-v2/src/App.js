@@ -8,7 +8,6 @@ import NewProject from "./pages/newProject/NewProject"
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Project from './pages/Project/Project'
-
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 function App() {

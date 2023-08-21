@@ -56,6 +56,15 @@
 .form .register{
    font-size: 0.8rem;
 }
+@media only screen and (max-width: 480px) {
+   .form{
+      width: 70%;
+   }
+   .form .register{
+      font-size: 0.7rem;
+   }
+}
+
 
 
 
