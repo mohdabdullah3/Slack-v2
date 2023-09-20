@@ -10,14 +10,16 @@ function Signup() {
    const [password, setpPassword] = useState('');
    const [displayName, setDisplayName] = useState('');
    const [profilePhoto, setProfilePhoto] = useState(null);
-   const [fileError, setfileError] = useState('');
+   const [fileError, setfileError] = useState(null);
    const { isLoading , error , signup } = useSignup();
 
    function handleSubmit(e) {
       e.preventDefault();
-      signup(email , password , displayName, profilePhoto);
+      if (!fileError) {
+         signup(email , password , displayName, profilePhoto);
+      }
    }
-
+   console.log(error,fileError)
    function handlePhoto(e) {
       setProfilePhoto(null);
       setfileError(null);
@@ -52,11 +54,11 @@ function Signup() {
          <input type="email" required onChange={e => setEmail(e.target.value)} value={email} placeholder='Enter email' />
          <input type="password" required onChange={e => setpPassword(e.target.value)} value={password} placeholder='Enter password' autoComplete="current-password" />
          <input type="file" required onChange={handlePhoto} />
-         {fileError && <div className="error">{fileError}</div> }
 
          { !isLoading && <button className='btn'>Sign up</button>}
          { isLoading && <button className='btn' disabled>Loading</button>}
-         {error && <div className="error">{error}</div> }
+         {fileError && <div className="error">{fileError}</div> }
+         { error && <div className="error">{error}</div> }
 
          <span className='register'>Already logged In? <Link to="/login">Go to login page</Link></span>
       </form>
